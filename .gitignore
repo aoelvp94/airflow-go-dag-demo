@@ -1,0 +1,6 @@
+dist/
+bin/
+logs/
+*.raw
+.env
+.DS_Store

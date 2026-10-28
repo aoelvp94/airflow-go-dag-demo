@@ -1,0 +1,30 @@
+x-airflow-env: &airflow-env
+  AIRFLOW__CORE__EXECUTOR: LocalExecutor
+  AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+  AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+  # Route the "golang" queue to the Go SDK coordinator (AIP-85).
+  AIRFLOW__SDK__COORDINATORS: '{"go": {"classpath": "airflow.sdk.coordinators.executable.ExecutableCoordinator"}}'
+  AIRFLOW__SDK__QUEUE_TO_COORDINATOR: '{"golang": "go"}'
+
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "airflow"]
+      interval: 5s
+      retries: 10
+
+  airflow:
+    build: .
+    image: airflow-go-dag-demo:local
+    command: standalone
+    environment: *airflow-env
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
