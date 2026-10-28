@@ -1,0 +1,3 @@
+# Astro CLI project configuration
+project:
+  name: airflow-go-dag-demo

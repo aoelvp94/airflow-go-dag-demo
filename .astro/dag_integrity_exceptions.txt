@@ -1,0 +1,3 @@
+# Add DAG files that should be excluded from integrity checks
+# One file path per line (relative to dags/ folder)
+# Example: dags/example_dag.py

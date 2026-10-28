@@ -1,0 +1,16 @@
+# Airflow configuration settings for local development with Astro CLI
+# These settings override airflow.cfg when using `astro dev start`
+
+airflow:
+  core:
+    executor: LocalExecutor
+    load_examples: false
+    dags_folder: /usr/local/airflow/dags
+  
+  # Route the "golang" queue to the Go SDK coordinator (AIP-85 native DAGs)
+  sdk:
+    coordinators: '{"go": {"classpath": "airflow.sdk.coordinators.executable.ExecutableCoordinator"}}'
+    queue_to_coordinator: '{"golang": "go"}'
+  
+  webserver:
+    expose_config: true

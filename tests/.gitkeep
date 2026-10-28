@@ -1,0 +1,2 @@
+# This directory contains tests for your DAGs
+# Use pytest with: just astro-pytest or astro dev pytest

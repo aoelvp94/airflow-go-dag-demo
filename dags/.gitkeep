@@ -1,0 +1,2 @@
+# This directory contains Airflow DAG files
+# The go_hello bundle will be copied here during Docker build

@@ -1,0 +1,2 @@
+# This directory is for custom Airflow plugins
+# See: https://airflow.apache.org/docs/apache-airflow/stable/plugins.html
