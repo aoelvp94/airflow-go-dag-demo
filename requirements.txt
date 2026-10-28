@@ -1,0 +1,5 @@
+# Add Python packages required by your DAGs
+# Use == for pinned versions to ensure reproducibility
+# Example:
+# pandas==2.0.0
+# requests==2.31.0
